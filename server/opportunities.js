@@ -26,9 +26,10 @@ export function createOpportunityService(root) {
   let cache = readDiskCache();
   let inflight = null;
   let lastFreshRun = 0;
+  let lastError = null;
 
   function base() { return (process.env.APIFY_BASE_URL || 'https://api.apify.com').replace(/\/$/, ''); }
-  function token() { return (process.env.APIFY_API_TOKEN || '').trim(); }
+  function token() { return (process.env.APIFY_API_TOKEN || '').trim().replace(/^['"]|['"]$/g, '').trim(); }
 
   function readDiskCache() {
     try { return JSON.parse(fs.readFileSync(cacheFile, 'utf8')); } catch { return null; }
@@ -92,8 +93,9 @@ export function createOpportunityService(root) {
       return { status: 'ok', ...data };
     } catch (err) {
       console.error('[opportunities] could not load:', err.message);
+      lastError = /401|403/.test(err.message) ? 'key_rejected' : /abort/i.test(err.name + err.message) ? 'timed_out' : 'source_error';
       if (cache) return { status: 'ok', ...cache, stale: true };
-      return { status: 'unavailable', reason: 'failed' };
+      return { status: 'unavailable', reason: 'failed', detail: lastError };
     }
   }
 
