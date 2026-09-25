@@ -4,13 +4,24 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "functions": {
-    "api/index.js": { "maxDuration": 300 }
+    "api/index.js": {
+      "maxDuration": 300
+    }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index?path=:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ],
   "crons": [
-    { "path": "/api/cron/notify", "schedule": "0 7 * * *" }
+    {
+      "path": "/api/cron/notify",
+      "schedule": "0 7 * * *"
+    }
   ]
 }
