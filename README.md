@@ -37,3 +37,11 @@ Students sign up with a name, email and password (at least 8 characters, with a 
 Each account's profile, roadmap, applications, drafts and uploaded documents are saved on the server in `.data/`, which is git-ignored, so students can sign in on any device. The browser keeps a working copy and saves changes to the account automatically. Signing out removes the copy from that browser. Students can also download a copy of their data or permanently delete their account from Profile → Settings.
 
 Password reset by email isn't available yet, because it needs an email-sending service.
+
+## Deploying on Vercel
+
+1. In the Vercel project, open **Settings → Git** and set the **Production Branch** to `horizon-app`.
+2. In **Settings → Environment Variables**, add every variable from `.env.example`, using your real values. Set `APP_URL` to your Vercel address, for example `https://your-app.vercel.app`.
+3. Redeploy.
+
+`vercel.json` sends every page address to the app, runs the server code as a Vercel function, and schedules the email check once a day at 07:00 UTC. Vercel's free plan allows daily schedules only. Uploaded documents are limited to 4 MB each, because of Vercel's request size limit.

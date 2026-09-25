@@ -100,4 +100,5 @@ export const ACCEPTED_FILES = {
   'application/msword': 'DOC', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'DOCX',
 };
 export const ACCEPTED_EXT = ['pdf', 'jpg', 'jpeg', 'png', 'webp', 'txt', 'doc', 'docx'];
-export const MAX_FILE_MB = 15;
+// Kept at 4 MB so uploads fit within hosting request limits (e.g. Vercel allows about 4.5 MB).
+export const MAX_FILE_MB = 4;

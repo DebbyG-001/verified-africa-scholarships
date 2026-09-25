@@ -15,7 +15,7 @@ const DAY = 864e5;
 const CRAWL_EVERY = DAY;
 const IDLE_AFTER = 3 * DAY;
 
-export function startNotifications({ db, mailer, opportunities }) {
+export function startNotifications({ db, mailer, opportunities, timers = true }) {
   let running = false;
 
   function footer(userId, types) {
@@ -131,8 +131,7 @@ export function startNotifications({ db, mailer, opportunities }) {
     finally { running = false; }
   }
 
-  setTimeout(tick, 60e3);
-  setInterval(tick, HOUR);
+  if (timers) { setTimeout(tick, 60e3); setInterval(tick, HOUR); }
 
   // Signed-in students can send themselves a test email from Settings.
   async function sendTest(user) {

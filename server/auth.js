@@ -5,7 +5,7 @@ import { layout, esc } from './mailer.js';
 
 const SESSION_DAYS = 30;
 const RESET_MINUTES = 60;
-const MAX_FILE_BYTES = 15 * 1024 * 1024;
+const MAX_FILE_BYTES = 4.4 * 1024 * 1024;
 const MAX_STATE_BYTES = 5 * 1024 * 1024;
 export const EMAIL_TYPES = ['newOpps', 'idle', 'deadlines'];
 export const DEFAULT_PREFS = { newOpps: true, idle: true, deadlines: true };
