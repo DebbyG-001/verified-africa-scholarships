@@ -1,0 +1,17 @@
+{
+	"$schema": "https://apify.com/schemas/v1/actor.ide.json",
+	"actorSpecification": 1,
+	"name": "horizon-scholar-scraper",
+	"title": "HorizonScholar scraper",
+	"description": "Scrapes verified African scholarship and essay-competition opportunities from trusted sources, with eligibility, required documents, and a trusted-source flag.",
+	"version": "0.0",
+	"meta": {
+		"templateId": "js-crawlee-cheerio"
+	},
+	"inputSchema": "./input_schema.json",
+	"outputSchema": "./output_schema.json",
+	"storages": {
+		"dataset": "./dataset_schema.json"
+	},
+	"dockerfile": "../Dockerfile"
+}

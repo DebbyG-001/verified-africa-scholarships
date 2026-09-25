@@ -1,0 +1,52 @@
+{
+    "$schema": "https://apify.com/schemas/v1/input.ide.json",
+    "title": "African Scholarship Crawler Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrls": {
+            "title": "Start URLs",
+            "type": "array",
+            "description": "Listing pages to crawl. Use the full scholarships list, not the homepage, so every scholarship is reachable.",
+            "editor": "requestListSources",
+            "prefill": [
+                { "url": "https://scholarsworld.ng/all-scholarships/" },
+                { "url": "https://brainsbeyondborders.org/" }
+            ]
+        },
+        "maxRequestsPerCrawl": {
+            "title": "Max Requests per Crawl",
+            "type": "integer",
+            "description": "Total pages the crawler may visit (listing pages + individual scholarship pages). Keep small for demos.",
+            "default": 30
+        },
+        "trustedDomains": {
+            "title": "Trusted funder domains",
+            "type": "array",
+            "description": "Apply-link domains that count as verified. Extend this list as your team confirms more funders.",
+            "editor": "stringList",
+            "prefill": [
+                "daad.de",
+                "ec.europa.eu",
+                "mastercardfdn.org",
+                "chevening.org",
+                "fulbright.org",
+                "docs.google.com",
+                "forms.gle",
+                "airbus.com",
+                "un.org",
+                "fao.org",
+                "who.int",
+                "worldbank.org",
+                "gatesfoundation.org",
+                "fordfoundation.org",
+                "microsoft.com",
+                "ox.ac.uk",
+                "cam.ac.uk",
+                "harvard.edu",
+                "mit.edu",
+                "stanford.edu"
+            ]
+        }
+    }
+}
